@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}About - MoodMusic{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row mb-5 fade-in-up">
+        <div class="col-12 text-center">
+            <h1 class="fw-bold mb-3">About The Project</h1>
+            <p class="lead text-muted max-w-700 mx-auto">Learn how we use Artificial Intelligence to understand your emotions and connect you with the perfect music.</p>
+        </div>
+    </div>
+
+    <div class="row align-items-center mb-5 fade-in-up delay-1">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="glass-card p-4 p-md-5 h-100">
+                <h3 class="fw-bold mb-3 d-flex align-items-center">
+                    <i class="bi bi-robot fs-2 text-primary me-3"></i> What is Machine Learning?
+                </h3>
+                <p>Machine Learning (ML) is a subset of Artificial Intelligence that enables systems to learn and improve from experience without being explicitly programmed.</p>
+                <p class="mb-0">In this project, we use Natural Language Processing (NLP), a branch of ML that focuses on the interaction between computers and human language, allowing our application to "read" and understand the sentiment behind your words.</p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="glass-card p-4 p-md-5 h-100">
+                <h3 class="fw-bold mb-3 d-flex align-items-center">
+                    <i class="bi bi-diagram-3 fs-2 text-success me-3"></i> The Algorithm
+                </h3>
+                <p>While this is a demonstration interface designed to connect to various backends, a typical implementation uses algorithms like <strong>Multinomial Naive Bayes</strong>, <strong>Support Vector Machines (SVM)</strong>, or modern <strong>Transformer models</strong> (like BERT).</p>
+                <p class="mb-0">The model is trained on thousands of text samples labeled with specific emotions, allowing it to recognize patterns and vocabulary associated with different moods.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row fade-in-up delay-2">
+        <div class="col-12">
+            <div class="glass-card p-4 p-md-5">
+                <h3 class="fw-bold mb-4 text-center">Project Workflow</h3>
+                
+                <div class="workflow-container position-relative py-4">
+                    <div class="workflow-line d-none d-md-block"></div>
+                    
+                    <div class="row text-center position-relative z-index-1">
+                        <div class="col-md-3 mb-4 mb-md-0">
+                            <div class="workflow-step mx-auto bg-primary-soft mb-3">
+                                <i class="bi bi-keyboard-fill text-primary"></i>
+                            </div>
+                            <h5 class="fw-bold">1. Input</h5>
+                            <p class="small text-muted">User provides text describing their current state of mind.</p>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4 mb-md-0">
+                            <div class="workflow-step mx-auto bg-info-soft mb-3">
+                                <i class="bi bi-gear-fill text-info spin-hover"></i>
+                            </div>
+                            <h5 class="fw-bold">2. Processing</h5>
+                            <p class="small text-muted">Text is cleaned, tokenized, and vectorized (TF-IDF) by the backend.</p>
+                        </div>
+                        
+                        <div class="col-md-3 mb-4 mb-md-0">
+                            <div class="workflow-step mx-auto bg-warning-soft mb-3">
+                                <i class="bi bi-bar-chart-fill text-warning"></i>
+                            </div>
+                            <h5 class="fw-bold">3. Prediction</h5>
+                            <p class="small text-muted">The ML model analyzes vectors and predicts the dominant emotion.</p>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <div class="workflow-step mx-auto bg-success-soft mb-3">
+                                <i class="bi bi-music-note-list text-success"></i>
+                            </div>
+                            <h5 class="fw-bold">4. Recommendation</h5>
+                            <p class="small text-muted">Songs matching the predicted mood are retrieved and displayed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

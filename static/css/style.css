@@ -1,0 +1,301 @@
+/* =========================================
+   Vibrant Glassmorphism Theme (Default)
+========================================= */
+:root {
+    --bg-main: #0f172a;
+    --text-main: #ffffff;
+    --text-muted: #cbd5e1;
+    
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --primary-soft: rgba(59, 130, 246, 0.2);
+    
+    --success: #10b981;
+    --success-soft: rgba(16, 185, 129, 0.2);
+    
+    --card-bg-hover: rgba(255, 255, 255, 0.1);
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --input-border: rgba(255, 255, 255, 0.15);
+    
+    --gradient-1: #3b82f6;
+    --gradient-2: #8b5cf6;
+}
+
+/* Global Mesh Gradient Background */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(var(--gradient-1-rgb, 59, 130, 246), 0.3) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(var(--gradient-2-rgb, 139, 92, 246), 0.3) 0px, transparent 50%);
+    background-attachment: fixed;
+    transition: all 0.8s ease;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Outfit', sans-serif;
+}
+
+.syne-font { font-family: 'Syne', sans-serif; letter-spacing: -1px; }
+.dm-sans-font { font-family: 'DM Sans', sans-serif; }
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+/* =========================================
+   Glassmorphism Components
+========================================= */
+.glass-nav {
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.glass-nav .nav-link {
+    color: var(--text-main);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.glass-nav .nav-link:hover {
+    color: var(--gradient-1);
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 1.5rem;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.glass-card:hover {
+    background: var(--card-bg-hover);
+}
+
+/* Buttons */
+.custom-btn {
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(var(--gradient-1-rgb, 59, 130, 246), 0.4);
+}
+
+.custom-textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    font-size: 1.1rem;
+}
+
+.custom-textarea:focus {
+    background-color: rgba(0,0,0,0.3);
+    color: white;
+    border-color: var(--gradient-1);
+    box-shadow: 0 0 0 4px rgba(var(--gradient-1-rgb, 59, 130, 246), 0.2);
+}
+
+/* Theme Classes (Dynamically Applied to Body) */
+body.theme-happy { 
+    --gradient-1: #f59e0b; --gradient-1-rgb: 245, 158, 11;
+    --gradient-2: #facc15; --gradient-2-rgb: 250, 204, 21;
+}
+body.theme-sad { 
+    --gradient-1: #3b82f6; --gradient-1-rgb: 59, 130, 246;
+    --gradient-2: #1e3a8a; --gradient-2-rgb: 30, 58, 138;
+}
+body.theme-angry { 
+    --gradient-1: #ef4444; --gradient-1-rgb: 239, 68, 68;
+    --gradient-2: #7f1d1d; --gradient-2-rgb: 127, 29, 29;
+}
+body.theme-relaxed { 
+    --gradient-1: #10b981; --gradient-1-rgb: 16, 185, 129;
+    --gradient-2: #064e3b; --gradient-2-rgb: 6, 78, 59;
+}
+body.theme-excited { 
+    --gradient-1: #f97316; --gradient-1-rgb: 249, 115, 22;
+    --gradient-2: #7c2d12; --gradient-2-rgb: 124, 45, 18;
+}
+body.theme-romantic { 
+    --gradient-1: #ec4899; --gradient-1-rgb: 236, 72, 153;
+    --gradient-2: #831843; --gradient-2-rgb: 131, 24, 67;
+}
+body.theme-stressed { 
+    --gradient-1: #8b5cf6; --gradient-1-rgb: 139, 92, 246;
+    --gradient-2: #4c1d95; --gradient-2-rgb: 76, 29, 149;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.song-cover-container {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    aspect-ratio: 1;
+}
+
+.song-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.song-card:hover .song-cover {
+    transform: scale(1.08);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.song-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-btn {
+    width: 55px;
+    height: 55px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+.confidence-badge {
+    background: rgba(255,255,255,0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px);
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+.loading-overlay.d-none { display: none !important; }
+
+/* Remove previous theme-toggle buttons as we are locked to this beautiful dark glassmorphism */
+.btn-outline-theme { display: none; }
+
+/* =========================================
+   New Premium Hero Styles 
+========================================= */
+.premium-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.gradient-text-animated {
+    background: linear-gradient(-45deg, #ff7b00, #ff0055, #8b5cf6, #3b82f6);
+    background-size: 300% 300%;
+    animation: gradientShift 5s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@keyframes gradientShift { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} }
+
+.icon-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.3s ease;
+}
+.glow-btn-hero:hover .icon-circle {
+    transform: translateX(5px);
+}
+
+.feature-icon-premium {
+    width: 70px; height: 70px;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.bg-gradient-1 { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+.bg-gradient-2 { background: linear-gradient(135deg, #8E2DE2, #4A00E0); }
+.bg-gradient-3 { background: linear-gradient(135deg, #11998e, #38ef7d); }
+
+.feature-card-premium {
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-left: 1px solid rgba(255,255,255,0.3);
+}
+.feature-card-premium:hover {
+    transform: translateY(-10px);
+    border-color: rgba(255,255,255,0.5);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* Floating Elements */
+.floating-element {
+    position: absolute;
+    font-size: 3rem;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    z-index: 0;
+    opacity: 0.6;
+    animation: floatAnim 10s ease-in-out infinite alternate;
+}
+.float-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 4rem; }
+.float-2 { top: 25%; right: 15%; animation-delay: -2s; font-size: 2.5rem; }
+.float-3 { bottom: 20%; left: 20%; animation-delay: -4s; font-size: 3rem; }
+.float-4 { bottom: 30%; right: 10%; animation-delay: -6s; font-size: 4.5rem; }
+.float-5 { top: 50%; left: 5%; animation-delay: -8s; font-size: 2rem; }
+
+@keyframes floatAnim {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-30px) rotate(15deg); }
+}

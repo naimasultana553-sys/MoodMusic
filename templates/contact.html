@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact - MoodMusic{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 fade-in-up">
+            
+            <div class="text-center mb-5">
+                <h1 class="fw-bold mb-3">Get In Touch</h1>
+                <p class="lead text-muted">Have questions about the project, or want to report an issue? Send us a message!</p>
+            </div>
+            
+            <div class="glass-card p-4 p-md-5">
+                <form id="contact-form">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <label for="name" class="form-label fw-bold">Your Name</label>
+                            <input type="text" class="form-control custom-input" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="email" class="form-label fw-bold">Your Email</label>
+                            <input type="email" class="form-control custom-input" id="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="subject" class="form-label fw-bold">Subject</label>
+                        <input type="text" class="form-control custom-input" id="subject" placeholder="How can we help you?" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="message" class="form-label fw-bold">Message</label>
+                        <textarea class="form-control custom-textarea" id="message" rows="5" placeholder="Your message here..." required></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg custom-btn glow-btn btn-animate px-5">
+                            Send Message <i class="bi bi-send ms-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
