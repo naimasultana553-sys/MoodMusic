@@ -29,10 +29,8 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     background-image:
-        radial-gradient(at 0% 0%, rgba(255,0,110,0.28) 0px, transparent 50%),
-        radial-gradient(at 30% 20%, rgba(131,56,236,0.32) 0px, transparent 45%),
-        radial-gradient(at 90% 90%, rgba(58,134,255,0.28) 0px, transparent 50%),
-        radial-gradient(at 70% 40%, rgba(255,190,11,0.12) 0px, transparent 40%);
+        radial-gradient(at 0% 0%, rgba(255,0,110,0.14) 0px, transparent 55%),
+        radial-gradient(at 100% 100%, rgba(131,56,236,0.16) 0px, transparent 55%);
     background-attachment: fixed;
     transition: all 0.8s ease;
 }
@@ -283,48 +281,10 @@ body.theme-stressed {
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
 }
 
-.hero-gradient-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.5;
-    pointer-events: none;
-}
-.orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, #ff006e 0%, transparent 70%); top: -120px; left: -160px; animation: orbFloat 12s ease-in-out infinite alternate; }
-.orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, #8338ec 0%, transparent 70%); top: 10%; right: -180px; animation: orbFloat 14s ease-in-out infinite alternate-reverse; }
-.orb-3 { width: 480px; height: 480px; background: radial-gradient(circle, #3a86ff 0%, transparent 70%); bottom: 10%; left: 20%; animation: orbFloat 16s ease-in-out infinite alternate; }
-@keyframes orbFloat { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,-30px) scale(1.08); } }
+.hero-section { min-height: 72vh; padding-top: 40px; }
 
-.glass-btn {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    color: white;
-    border-radius: 50px;
-    padding: 0.75rem 1.6rem;
-    font-weight: 600;
-    backdrop-filter: blur(12px);
-    transition: all 0.3s;
-}
-.glass-btn:hover { background: rgba(255,255,255,0.14); color: white; transform: translateY(-2px); }
-.stat-pill {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 50px;
-    padding: 0.45rem 1.1rem;
-    font-size: 0.9rem;
-    backdrop-filter: blur(8px);
-}
-.stat-pill strong { color: #ffbe0b; }
-
-/* Floating Elements */
-.floating-element {
-    position: absolute;
-    font-size: 3rem;
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-    z-index: 0;
-    opacity: 0.55;
-    animation: floatAnim 10s ease-in-out infinite alternate;
-}
+/* Floating Elements - hidden for clean layout */
+.floating-element { display: none; }
 .float-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 4rem; }
 .float-2 { top: 25%; right: 15%; animation-delay: -2s; font-size: 2.5rem; }
 .float-3 { bottom: 20%; left: 20%; animation-delay: -4s; font-size: 3rem; }
