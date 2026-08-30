@@ -3,16 +3,71 @@ import random
 import time
 import requests
 import urllib.parse
+import os
+import json
+import anthropic
 
 app = Flask(__name__)
 
-# --- Mock ML Model Setup ---
-# In a real scenario, you would load your model and vectorizer here:
-# import pickle
-# model = pickle.load(open('model/model.pkl', 'rb'))
-# vectorizer = pickle.load(open('model/vectorizer.pkl', 'rb'))
+anthropic_client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 MOODS = ['Happy', 'Sad', 'Angry', 'Relaxed', 'Excited', 'Romantic', 'Stressed']
+
+MOOD_PREDICTION_PROMPT = f"""You are the mood-classification engine for MoodMusic, a music recommendation app.
+
+A user will describe how they're feeling in free text. Read it carefully and classify their emotional state.
+
+You MUST classify into exactly one of these categories: {', '.join(MOODS)}.
+
+Respond with ONLY a raw JSON object — no markdown code fences, no preamble, no extra text — in exactly this shape:
+{{
+  "mood": "<one of: {', '.join(MOODS)}>",
+  "confidence_score": <number between 60 and 99, one decimal place, reflecting how clearly the text signals that mood>,
+  "description": "<one warm, second-person sentence reflecting how they seem to feel, e.g. 'You seem cheerful and energetic today.'>",
+  "wellness_suggestion": "<one short, actionable, encouraging wellness tip that fits this specific mood and situation>"
+}}
+
+Base the mood, description, and wellness_suggestion on the specific content of what the user wrote, not just keyword matching — consider context, tone, and nuance (e.g. sarcasm, mixed emotions, intensity)."""
+
+
+def predict_mood_with_ai(text):
+    """Calls the Claude API to classify mood from free text.
+    Returns a dict: {mood, confidence_score, description, wellness_suggestion}
+    Raises an exception if the call or parsing fails (caller should fall back)."""
+    message = anthropic_client.messages.create(
+        model="claude-sonnet-5",
+        max_tokens=300,
+        system=MOOD_PREDICTION_PROMPT,
+        messages=[{"role": "user", "content": text}]
+    )
+    raw = message.content[0].text.strip()
+    raw = raw.replace("```json", "").replace("```", "").strip()
+    result = json.loads(raw)
+
+    if result.get("mood") not in MOODS:
+        raise ValueError(f"AI returned an unrecognized mood: {result.get('mood')}")
+
+    return result
+
+
+def predict_mood_with_keywords(text):
+    """Fallback mood detection if the AI call fails (no API key, network error, etc)."""
+    text_lower = text.lower()
+    if any(w in text_lower for w in ['happy', 'joy', 'great', 'awesome', 'good', 'aced', 'smile']): mood = 'Happy'
+    elif any(w in text_lower for w in ['sad', 'depressed', 'down', 'cry', 'unhappy', 'bad']): mood = 'Sad'
+    elif any(w in text_lower for w in ['angry', 'mad', 'frustrated', 'annoyed', 'furious', 'hate']): mood = 'Angry'
+    elif any(w in text_lower for w in ['relax', 'chill', 'calm', 'peace', 'tired', 'sleep']): mood = 'Relaxed'
+    elif any(w in text_lower for w in ['excited', 'thrilled', 'pumped', 'eager', 'can\'t wait']): mood = 'Excited'
+    elif any(w in text_lower for w in ['love', 'romantic', 'sweet', 'heart', 'date']): mood = 'Romantic'
+    elif any(w in text_lower for w in ['stress', 'exam', 'work', 'pressure', 'anxious', 'worried']): mood = 'Stressed'
+    else: mood = 'Happy'
+
+    return {
+        'mood': mood,
+        'confidence_score': round(random.uniform(85.0, 98.9), 1),
+        'description': DESCRIPTIONS.get(mood, ''),
+        'wellness_suggestion': WELLNESS.get(mood, '')
+    }
 
 MOCK_SONGS = {
     'Happy': [
@@ -149,20 +204,14 @@ def contact():
 
 @app.route('/instant_songs', methods=['GET'])
 def instant_songs():
-    # Gather all songs from all moods
     all_songs = []
     for mood_songs in MOCK_SONGS.values():
         all_songs.extend(mood_songs)
-    
-    # Pick 20 random songs
     random.shuffle(all_songs)
     selected_songs = all_songs[:20]
-    
-    import urllib.parse
     for s in selected_songs:
         query = urllib.parse.quote_plus(f"{s['title']} {s['artist']}")
         s['url'] = f"https://www.youtube.com/results?search_query={query}"
-        
         if 'placehold' in s['cover']:
             try:
                 itunes_url = f"https://itunes.apple.com/search?term={query}&entity=song&limit=1"
@@ -171,51 +220,33 @@ def instant_songs():
                     s['cover'] = res['results'][0]['artworkUrl100'].replace('100x100bb', '300x300bb')
             except:
                 s['cover'] = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&h=300&fit=crop'
-                
     return jsonify({'songs': selected_songs})
 
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
     text = data.get('text', '')
-    
     if not text:
         return jsonify({'error': 'No text provided'}), 400
-        
-    # Mocking prediction delay
-    time.sleep(1.5)
-    
-    # --- Real Model Prediction ---
-    # In a real app, you would do:
-    # vector = vectorizer.transform([text])
-    # prediction = model.predict(vector)[0]
-    # prob = model.predict_proba(vector)[0]
-    # confidence = max(prob) * 100
-    # mood = MOODS[prediction] # assuming prediction is index or string
-    
-    # --- Keyword-Based Mood Detection ---
-    text_lower = text.lower()
-    if any(w in text_lower for w in ['happy', 'joy', 'great', 'awesome', 'good', 'aced', 'smile']): mood = 'Happy'
-    elif any(w in text_lower for w in ['sad', 'depressed', 'down', 'cry', 'unhappy', 'bad']): mood = 'Sad'
-    elif any(w in text_lower for w in ['angry', 'mad', 'frustrated', 'annoyed', 'furious', 'hate']): mood = 'Angry'
-    elif any(w in text_lower for w in ['relax', 'chill', 'calm', 'peace', 'tired', 'sleep']): mood = 'Relaxed'
-    elif any(w in text_lower for w in ['excited', 'thrilled', 'pumped', 'eager', 'can\'t wait']): mood = 'Excited'
-    elif any(w in text_lower for w in ['love', 'romantic', 'sweet', 'heart', 'date']): mood = 'Romantic'
-    elif any(w in text_lower for w in ['stress', 'exam', 'work', 'pressure', 'anxious', 'worried']): mood = 'Stressed'
-    else: mood = 'Happy' # Default
-    
-    confidence = round(random.uniform(85.0, 98.9), 1)
-    
-    # Randomly select 10 songs for the mood (or all if < 10)
+    try:
+        ai_result = predict_mood_with_ai(text)
+        mood = ai_result['mood']
+        confidence = ai_result['confidence_score']
+        description = ai_result['description']
+        wellness = ai_result['wellness_suggestion']
+    except Exception as e:
+        print(f"AI mood prediction failed, using fallback: {e}")
+        fallback = predict_mood_with_keywords(text)
+        mood = fallback['mood']
+        confidence = fallback['confidence_score']
+        description = fallback['description']
+        wellness = fallback['wellness_suggestion']
     songs = MOCK_SONGS.get(mood, [])
     random.shuffle(songs)
     recommended_songs = songs[:10]
-    
     for s in recommended_songs:
         query = urllib.parse.quote_plus(f"{s['title']} {s['artist']}")
         s['url'] = f"https://www.youtube.com/results?search_query={query}"
-        
-        # Fetch real thumbnail from iTunes API if not already fetched
         if 'placehold' in s['cover']:
             try:
                 itunes_url = f"https://itunes.apple.com/search?term={query}&entity=song&limit=1"
@@ -224,16 +255,14 @@ def predict():
                     s['cover'] = res['results'][0]['artworkUrl100'].replace('100x100bb', '300x300bb')
             except:
                 s['cover'] = 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300&h=300&fit=crop'
-    
     response = {
         'mood': mood,
         'emoji': EMOJIS.get(mood, '😐'),
         'confidence_score': confidence,
-        'description': DESCRIPTIONS.get(mood, ''),
-        'wellness_suggestion': WELLNESS.get(mood, ''),
+        'description': description,
+        'wellness_suggestion': wellness,
         'songs': recommended_songs
     }
-    
     return jsonify(response)
 
 if __name__ == '__main__':
