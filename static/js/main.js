@@ -121,10 +121,27 @@ function displayResults(data) {
     
     // Populate header info
     document.getElementById('res-emoji').textContent = data.emoji;
-    document.getElementById('res-mood').textContent = data.mood;
+    document.getElementById('res-mood').textContent = `${data.mood} Mood`;
     document.getElementById('res-confidence').textContent = `${data.confidence_score}%`;
     document.getElementById('res-description').textContent = `"${data.description}"`;
     document.getElementById('res-wellness').textContent = data.wellness_suggestion;
+
+    // Populate the fanned-cover reveal + folder track list
+    const topThree = data.songs.slice(0, 3);
+    const coverLeft = document.getElementById('cover-left');
+    const coverCenter = document.getElementById('cover-center');
+    const coverRight = document.getElementById('cover-right');
+    if (topThree[0]) { coverCenter.src = topThree[0].cover; coverCenter.alt = topThree[0].title; }
+    if (topThree[1]) { coverLeft.src = topThree[1].cover; coverLeft.alt = topThree[1].title; }
+    if (topThree[2]) { coverRight.src = topThree[2].cover; coverRight.alt = topThree[2].title; }
+
+    const folderTracks = document.getElementById('folder-tracks');
+    folderTracks.innerHTML = topThree.map(song => `
+        <div class="mood-folder-track">
+            <div class="track-title text-truncate">${song.title}</div>
+            <div class="track-artist text-truncate">${song.artist}</div>
+        </div>
+    `).join('');
     
     // Apply theme
     const themeClass = `theme-${data.mood.toLowerCase()}`;
