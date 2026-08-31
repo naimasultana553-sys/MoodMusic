@@ -1,25 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}MoodMusic ♡ cute vibes{% endblock %}
 {% block content %}
-<div class="glow-arc-hero">
-    <div class="arc-layer">
-        <div class="arc-card a1"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a2"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a3"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a4"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a5"><img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a6"><img src="https://images.unsplash.com/photo-1493675883365-36a8b12f4f00?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a7"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=200&h=200&fit=crop" alt=""></div>
-        <div class="arc-card a8"><img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2c4?w=200&h=200&fit=crop" alt=""></div>
-    </div>
-    <div class="glow-center text-center">
+<div class="mixed-hero">
+    <div class="text-center">
         <div class="music-logo-wrap mb-3">
-            <div class="music-logo glow-logo"><i class="bi bi-music-note-beamed"></i></div>
+            <div class="music-logo"><i class="bi bi-music-note-beamed"></i></div>
             <div class="music-logo-text text-white">MoodMusic</div>
         </div>
-        <h2 class="glow-title">Glow In The Dark</h2>
-        <p class="glow-sub">small words, soft sounds — your emotions, translated into music ♡</p>
-        <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2 mt-2">get started <i class="bi bi-arrow-right ms-1"></i></a>
+        <h2 class="mixed-title">Glow In The Dark</h2>
+        <p class="mixed-sub">your emotions, translated into music ♡</p>
+        <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2 mt-3" style="background:#fff; color:#3a3a42 !important; border-color:#fff;">get started <i class="bi bi-arrow-right ms-1"></i></a>
     </div>
 </div>
 <div class="container py-4">
