@@ -2,24 +2,38 @@
 {% block title %}MoodMusic ♡ cute vibes{% endblock %}
 {% block content %}
 <div class="mixed-hero">
-    <div class="text-center">
+    <div class="text-center w-100">
         <div class="music-logo-wrap mb-3">
             <div class="music-logo"><i class="bi bi-music-note-beamed"></i></div>
             <div class="music-logo-text text-white">MoodMusic</div>
         </div>
         <h2 class="mixed-title">Glow In The Dark</h2>
         <p class="mixed-sub">your emotions, translated into music ♡</p>
-        <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2 mt-3" style="background:#fff; color:#3a3a42 !important; border-color:#fff;">get started <i class="bi bi-arrow-right ms-1"></i></a>
+        <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2 mt-3 reveal cute-pulse" style="background:#fff; color:#3a3a42 !important; border-color:#fff;">get started <i class="bi bi-arrow-right ms-1"></i></a>
+        <div class="card-runway mt-4">
+            <div class="card-track-run">
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Shake It Off</div><div class="run-card-artist">Taylor Swift</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Levitating</div><div class="run-card-artist">Dua Lipa</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Stressed Out</div><div class="run-card-artist">Twenty One Pilots</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Given Up</div><div class="run-card-artist">Linkin Park</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Clair de Lune</div><div class="run-card-artist">Claude Debussy</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Shake It Off</div><div class="run-card-artist">Taylor Swift</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Levitating</div><div class="run-card-artist">Dua Lipa</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Stressed Out</div><div class="run-card-artist">Twenty One Pilots</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Given Up</div><div class="run-card-artist">Linkin Park</div></div>
+                <div class="run-card"><img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=200&h=200&fit=crop" alt=""><div class="run-card-title">Clair de Lune</div><div class="run-card-artist">Claude Debussy</div></div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="container py-4">
     <div id="instant" class="row justify-content-center mt-3">
-        <div class="col-12 text-center mb-3">
-            <h2 class="cute-heading h5 mb-1">instant playback</h2>
-            <p class="cute-muted small">soft picks, just for you</p>
+        <div class="col-12 text-center mb-3 reveal-on-scroll">
+            <h2 class="cute-heading h5 mb-1" style="color:#fff;">instant playback</h2>
+            <p class="small" style="color:rgba(255,255,255,0.62);">soft picks, just for you</p>
         </div>
         <div class="col-12">
-            <div id="instant-loading" class="text-center py-3"><div class="spinner-border spinner-border-sm cute-spinner"></div><p class="small cute-muted mt-2">fetching cute tracks…</p></div>
+            <div id="instant-loading" class="text-center py-3"><div class="spinner-border spinner-border-sm" style="color:rgba(255,255,255,0.7);"></div><p class="small mt-2" style="color:rgba(255,255,255,0.62);">fetching cute tracks…</p></div>
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3" id="instant-songs-container"></div>
         </div>
     </div>
