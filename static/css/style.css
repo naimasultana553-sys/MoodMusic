@@ -124,6 +124,9 @@ body.theme-happy,body.theme-sad,body.theme-angry,body.theme-relaxed,body.theme-e
 .hero-clean{ background:#ffffff; min-height:34vh; display:flex; align-items:center; }
 .hero-image-section,.hero-bg-img,.hero-overlay,.hero-overlay-light,.hero-folder-wrap,.hero-folder-img{ display:none; }
 .hero-clean{ min-height:auto; }
+.music-logo-wrap{ display:flex; flex-direction:column; align-items:center; gap:0.35rem; }
+.music-logo{ width:48px; height:48px; border-radius:50%; background:#fff; border:1px solid var(--glass-border); display:flex; align-items:center; justify-content:center; font-size:1.25rem; color:var(--text-main); box-shadow:0 4px 14px rgba(60,60,70,0.08); }
+.music-logo-text{ font-family:'Nunito', sans-serif; font-weight:800; font-size:0.85rem; letter-spacing:0.06em; color:var(--text-main); }
 .card-runway{ overflow:hidden; width:100%; -webkit-mask:linear-gradient(90deg, transparent, black 6%, black 94%, transparent); }
 .card-track-run{ display:flex; gap:0.9rem; width:max-content; animation: cardRun 22s linear infinite; }
 .run-card{ width:148px; flex-shrink:0; background:#fff; border:1px solid var(--glass-border); border-radius:1rem; padding:0.5rem; box-shadow:0 4px 14px rgba(60,60,70,0.06); text-align:left; }
