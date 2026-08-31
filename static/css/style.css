@@ -121,9 +121,10 @@ body.theme-happy,body.theme-sad,body.theme-angry,body.theme-relaxed,body.theme-e
 .btn-outline-theme{ display:none; }
 .feature-icon-premium,.bg-gradient-1,.bg-gradient-2,.bg-gradient-3{ background:var(--bg-soft) !important; color:var(--text-muted); }
 .hero-section{ min-height:auto; padding-top:18px; }
-.hero-image-section{ min-height:58vh; display:flex; align-items:center; border-radius:0 0 1.5rem 1.5rem; overflow:hidden; }
-.hero-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
-.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(58,58,66,0.38) 0%, rgba(58,58,66,0.22) 45%, rgba(250,250,251,1) 100%); }
+.hero-image-section{ min-height:48vh; display:flex; align-items:center; justify-content:center; border-radius:1.2rem; overflow:hidden; margin:1rem auto; max-width:980px; }
+.hero-bg-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center; background:#f1f1f3; transform:none !important; }
+.hero-overlay{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(250,250,251,0) 55%, rgba(250,250,251,0.55) 100%); }
+.hero-overlay-light{ background:linear-gradient(180deg, rgba(250,250,251,0.05) 0%, rgba(250,250,251,0.35) 100%); }
 .floating-element{ display:none; }
 .reveal{ opacity:0; transform:translateY(10px); animation: revealIn 0.45s cubic-bezier(0.22,1,0.36,1) forwards; }
 .reveal-on-scroll{ opacity:0; transform:translateY(10px); transition: opacity 0.45s cubic-bezier(0.22,1,0.36,1), transform 0.45s cubic-bezier(0.22,1,0.36,1); }
@@ -131,7 +132,7 @@ body.theme-happy,body.theme-sad,body.theme-angry,body.theme-relaxed,body.theme-e
 @keyframes revealIn{ to{ opacity:1; transform:none; } }
 .cute-pulse{ animation: revealIn 0.45s cubic-bezier(0.22,1,0.36,1) forwards, cutePulse 2.8s ease-in-out 1.2s infinite; }
 @keyframes cutePulse{ 0%,100%{ transform:translateY(0); box-shadow:0 4px 14px rgba(58,58,66,0.18); } 50%{ transform:translateY(-1px); box-shadow:0 8px 20px rgba(58,58,66,0.22); } }
-.hero-parallax{ will-change:transform; transition: transform 0.1s linear; }
+.hero-parallax{ will-change:auto; transition:none; transform:none !important; }
 .fade-in-up{ opacity:0; transform:translateY(8px); animation: revealIn 0.32s cubic-bezier(0.22,1,0.36,1) forwards; }
 @media (prefers-reduced-motion: reduce){ .reveal,.reveal-on-scroll,.fade-in-up,.cute-pulse{ animation:none !important; transition:none !important; opacity:1 !important; transform:none !important; } .hero-parallax{ transform:none !important; } }
 .mood-folder-visual{ perspective:600px; }

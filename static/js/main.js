@@ -38,18 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealEls.forEach(el => el.classList.add('is-visible'));
     }
     const heroImg = document.querySelector('.hero-parallax');
-    if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    heroImg.style.transform = `translateY(${window.scrollY * 0.08}px) scale(1.03)`;
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: true });
-    }
+    if (heroImg) heroImg.style.transform = 'none';
 
     // --- Instant Playback Logic (Home Page) ---
     const instantContainer = document.getElementById('instant-songs-container');
