@@ -132,11 +132,11 @@ body.theme-happy,body.theme-sad,body.theme-angry,body.theme-relaxed,body.theme-e
 .hero-image-section,.hero-bg-img,.hero-overlay,.hero-overlay-light,.hero-folder-wrap,.hero-folder-img{ display:none; }
 .glow-arc-hero,.arc-layer,.arc-card,.glow-center,.glow-logo,.glow-title,.glow-sub{ display:none; }
 .card-runway{ overflow:hidden; width:100%; -webkit-mask:linear-gradient(90deg, transparent, black 6%, black 94%, transparent); }
-.card-track-run{ display:flex; gap:0.9rem; width:max-content; animation: cardRun 22s linear infinite; }
-.run-card{ width:148px; flex-shrink:0; background:#fff; border:1px solid var(--glass-border); border-radius:1rem; padding:0.5rem; box-shadow:0 4px 14px rgba(60,60,70,0.06); text-align:left; }
-.run-card img{ width:100%; aspect-ratio:1; object-fit:cover; border-radius:0.7rem; background:var(--bg-soft); display:block; }
-.run-card-title{ font-size:0.74rem; font-weight:700; margin-top:0.45rem; line-height:1.2; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.run-card-artist{ font-size:0.68rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.card-track-run{ display:flex; gap:0.65rem; width:max-content; animation: cardRun 22s linear infinite; }
+.run-card{ width:108px; flex-shrink:0; background:#fff; border:1px solid var(--glass-border); border-radius:0.85rem; padding:0.35rem; box-shadow:0 3px 10px rgba(60,60,70,0.06); text-align:left; }
+.run-card img{ width:100%; aspect-ratio:1; object-fit:cover; border-radius:0.55rem; background:var(--bg-soft); display:block; }
+.run-card-title{ font-size:0.66rem; font-weight:700; margin-top:0.32rem; line-height:1.2; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.run-card-artist{ font-size:0.6rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 @keyframes cardRun{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
 .folder-runway,.folder-track-run,.mini-folder{ display:none; }
 @media (prefers-reduced-motion: reduce){ .card-track-run{ animation:none; } }
