@@ -25,6 +25,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduce-motion');
+    }
+    const revealEls = document.querySelectorAll('.reveal-on-scroll');
+    if (revealEls.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        revealEls.forEach(el => io.observe(el));
+    } else {
+        revealEls.forEach(el => el.classList.add('is-visible'));
+    }
+    const heroImg = document.querySelector('.hero-parallax');
+    if (heroImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    heroImg.style.transform = `translateY(${window.scrollY * 0.08}px) scale(1.03)`;
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
     // --- Instant Playback Logic (Home Page) ---
     const instantContainer = document.getElementById('instant-songs-container');
     if (instantContainer) {
@@ -32,14 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(res => res.json())
             .then(data => {
                 document.getElementById('instant-loading').classList.add('d-none');
+                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 data.songs.forEach((song, index) => {
-                    const delay = index * 0.05;
+                    const delay = reduce ? 0 : Math.min(index * 0.03, 0.45);
                     const cardHTML = `
                         <div class="col fade-in-up" style="animation-delay: ${delay}s;">
                             <a href="${song.url}" target="_blank" class="text-decoration-none text-reset h-100 d-block">
                             <div class="glass-card song-card p-3 h-100">
                                 <div class="song-cover-container">
-                                    <img src="${song.cover}" alt="${song.title} Cover" class="song-cover">
+                                    <img src="${song.cover}" alt="${song.title} Cover" class="song-cover" loading="lazy">
                                     <div class="play-overlay">
                                         <div class="play-btn"><i class="bi bi-play-fill"></i></div>
                                     </div>
