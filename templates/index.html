@@ -2,15 +2,8 @@
 {% block title %}MoodMusic ♡ cute vibes{% endblock %}
 {% block content %}
 <div class="hero-clean bg-white py-5">
-    <div class="container py-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8 text-center">
-                <div class="hero-folder-wrap mx-auto mb-4">
-                    <img src="{{ url_for('static', filename='images/hero.jpeg') }}" alt="Typography Music" class="hero-folder-img">
-                </div>
-                <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2">get started <i class="bi bi-arrow-right ms-1"></i></a>
-            </div>
-        </div>
+    <div class="container py-5 text-center">
+        <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2">get started <i class="bi bi-arrow-right ms-1"></i></a>
     </div>
 </div>
 <div class="container py-4">
