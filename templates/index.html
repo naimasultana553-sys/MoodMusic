@@ -1,8 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}MoodMusic ♡ cute vibes{% endblock %}
 {% block content %}
-<div class="hero-clean bg-white py-5">
-    <div class="container py-5 text-center">
+<div class="hero-clean bg-white py-4 overflow-hidden">
+    <div class="container py-4 text-center">
+        <div class="folder-runway mb-4">
+            <div class="folder-track-run">
+                <div class="mini-folder f1"><i class="bi bi-folder2"></i><span>happy</span></div>
+                <div class="mini-folder f2"><i class="bi bi-folder2"></i><span>chill</span></div>
+                <div class="mini-folder f3"><i class="bi bi-folder2"></i><span>love</span></div>
+                <div class="mini-folder f4"><i class="bi bi-folder2"></i><span>hype</span></div>
+                <div class="mini-folder f5"><i class="bi bi-folder2"></i><span>calm</span></div>
+                <div class="mini-folder f1"><i class="bi bi-folder2"></i><span>happy</span></div>
+                <div class="mini-folder f2"><i class="bi bi-folder2"></i><span>chill</span></div>
+                <div class="mini-folder f3"><i class="bi bi-folder2"></i><span>love</span></div>
+            </div>
+        </div>
         <a href="{{ url_for('predict_page') }}" class="btn cute-btn px-4 py-2">get started <i class="bi bi-arrow-right ms-1"></i></a>
     </div>
 </div>
